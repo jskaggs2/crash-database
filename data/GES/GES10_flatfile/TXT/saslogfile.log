@@ -1,0 +1,2289 @@
+NOTE: Copyright (c) 2002-2003 by SAS Institute Inc., Cary, NC, USA.
+NOTE: SAS (r) 9.1 (TS1M3)
+      Licensed to US DEPT OF TRANSPORTATION, Site 0039110080.
+NOTE: This session is executing on the XP_PRO  platform.
+
+
+
+NOTE: SAS 9.1.3 Service Pack 4
+
+NOTE: SAS initialization used:
+      real time           15.64 seconds
+      cpu time            1.21 seconds
+
+1
+2    LIBNAME GES2010 'R:\work\GES10';
+NOTE: Libref GES2010 was successfully assigned as follows:
+      Engine:        V9
+      Physical Name: R:\work\GES10
+3
+4    options nofmterr;
+5
+6    PROC EXPORT DATA= GES2010.ACCIDENT
+7                OUTFILE= "R:\FILES\GES10\FlatFile\ACCIDENT.TXT"
+8                DBMS=TAB REPLACE;
+9    RUN;
+
+10    /**********************************************************************
+11    *   PRODUCT:   SAS
+12    *   VERSION:   9.1
+13    *   CREATOR:   External File Interface
+14    *   DATE:      30NOV11
+15    *   DESC:      Generated SAS Datastep Code
+16    *   TEMPLATE SOURCE:  (None Specified.)
+17    ***********************************************************************/
+18       data _null_;
+19       set  GES2010.ACCIDENT                             end=EFIEOD;
+20       %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+21       %let _EFIREC_ = 0;     /* clear export record count macro variable */
+22       file 'R:\FILES\GES10\FlatFile\ACCIDENT.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+23          format CASENUM best12. ;
+24          format WEIGHT best12. ;
+25          format MONTH bestx12. ;
+26          format DAY_WEEK bestx12. ;
+27          format REGION bestx12. ;
+28          format LAND_USE bestx12. ;
+29          format MAN_COL bestx12. ;
+30          format INT_HWY bestx12. ;
+31          format REL_ROAD bestx12. ;
+32          format LGT_COND bestx12. ;
+33          format WEATHER bestx12. ;
+34          format SCH_BUS bestx12. ;
+35          format WRK_ZONE bestx12. ;
+36          format ALCOHOL bestx12. ;
+37          format EVENT1 bestx12. ;
+38          format MAX_SEV bestx12. ;
+39          format STRATUM bestx12. ;
+40          format RELJCT1 bestx12. ;
+41          format RELJCT2 bestx12. ;
+42          format WEATHER1 bestx12. ;
+43          format WEATHER2 bestx12. ;
+44          format TYP_INT bestx12. ;
+45          format HOUR bestx12. ;
+46          format MINUTE bestx12. ;
+47          format NON_INVL best12. ;
+48          format NUM_INJ bestx12. ;
+49          format PJ best12. ;
+50          format PSU best12. ;
+51          format PSUSTRAT best12. ;
+52          format PVH_INVL best12. ;
+53          format VEH_INVL best12. ;
+54          format YEAR best12. ;
+55          format WKDY_IM bestx12. ;
+56          format MANCOL_IM bestx12. ;
+57          format LGTCON_IM bestx12. ;
+58          format WEATHR_IM bestx12. ;
+59          format RELJCT1_IM bestx12. ;
+60          format RELJCT2_IM bestx12. ;
+61          format HOUR_IM bestx12. ;
+62          format MINUTE_IM bestx12. ;
+63          format EVENT1_IM bestx12. ;
+64          format MAXSEV_IM bestx12. ;
+65          format NO_INJ_IM bestx12. ;
+66          format ALCHL_IM bestx12. ;
+67       if _n_ = 1 then        /* write column names */
+68        do;
+69          put
+70          'CASENUM'
+71          '09'x
+72          'WEIGHT'
+73          '09'x
+74          'MONTH'
+75          '09'x
+76          'DAY_WEEK'
+77          '09'x
+78          'REGION'
+79          '09'x
+80          'LAND_USE'
+81          '09'x
+82          'MAN_COL'
+83          '09'x
+84          'INT_HWY'
+85          '09'x
+86          'REL_ROAD'
+87          '09'x
+88          'LGT_COND'
+89          '09'x
+90          'WEATHER'
+91          '09'x
+92          'SCH_BUS'
+93          '09'x
+94          'WRK_ZONE'
+95          '09'x
+96          'ALCOHOL'
+97          '09'x
+98          'EVENT1'
+99          '09'x
+100         'MAX_SEV'
+101         '09'x
+102         'STRATUM'
+103         '09'x
+104         'RELJCT1'
+105         '09'x
+106         'RELJCT2'
+107         '09'x
+108         'WEATHER1'
+109         '09'x
+110         'WEATHER2'
+111         '09'x
+112         'TYP_INT'
+113         '09'x
+114         'HOUR'
+115         '09'x
+116         'MINUTE'
+117         '09'x
+118         'NON_INVL'
+119         '09'x
+120         'NUM_INJ'
+121         '09'x
+122         'PJ'
+123         '09'x
+124         'PSU'
+125         '09'x
+126         'PSUSTRAT'
+127         '09'x
+128         'PVH_INVL'
+129         '09'x
+130         'VEH_INVL'
+131         '09'x
+132         'YEAR'
+133         '09'x
+134         'WKDY_IM'
+135         '09'x
+136         'MANCOL_IM'
+137         '09'x
+138         'LGTCON_IM'
+139         '09'x
+140         'WEATHR_IM'
+141         '09'x
+142         'RELJCT1_IM'
+143         '09'x
+144         'RELJCT2_IM'
+145         '09'x
+146         'HOUR_IM'
+147         '09'x
+148         'MINUTE_IM'
+149         '09'x
+150         'EVENT1_IM'
+151         '09'x
+152         'MAXSEV_IM'
+153         '09'x
+154         'NO_INJ_IM'
+155         '09'x
+156         'ALCHL_IM'
+157         ;
+158       end;
+159       do;
+160         EFIOUT + 1;
+161         put CASENUM @;
+162         put WEIGHT @;
+163         put MONTH @;
+164         put DAY_WEEK @;
+165         put REGION @;
+166         put LAND_USE @;
+167         put MAN_COL @;
+168         put INT_HWY @;
+169         put REL_ROAD @;
+170         put LGT_COND @;
+171         put WEATHER @;
+172         put SCH_BUS @;
+173         put WRK_ZONE @;
+174         put ALCOHOL @;
+175         put EVENT1 @;
+176         put MAX_SEV @;
+177         put STRATUM @;
+178         put RELJCT1 @;
+179         put RELJCT2 @;
+180         put WEATHER1 @;
+181         put WEATHER2 @;
+182         put TYP_INT @;
+183         put HOUR @;
+184         put MINUTE @;
+185         put NON_INVL @;
+186         put NUM_INJ @;
+187         put PJ @;
+188         put PSU @;
+189         put PSUSTRAT @;
+190         put PVH_INVL @;
+191         put VEH_INVL @;
+192         put YEAR @;
+193         put WKDY_IM @;
+194         put MANCOL_IM @;
+195         put LGTCON_IM @;
+196         put WEATHR_IM @;
+197         put RELJCT1_IM @;
+198         put RELJCT2_IM @;
+199         put HOUR_IM @;
+200         put MINUTE_IM @;
+201         put EVENT1_IM @;
+202         put MAXSEV_IM @;
+203         put NO_INJ_IM @;
+204         put ALCHL_IM ;
+205         ;
+206       end;
+207      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+208      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+209      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\ACCIDENT.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\ACCIDENT.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 46392 records were written to the file 'R:\FILES\GES10\FlatFile\ACCIDENT.TXT'.
+      The minimum record length was 105.
+      The maximum record length was 362.
+NOTE: There were 46391 observations read from the data set GES2010.ACCIDENT.
+NOTE: DATA statement used (Total process time):
+      real time           33.46 seconds
+      cpu time            1.53 seconds
+
+
+46391 records created in R:\FILES\GES10\FlatFile\ACCIDENT.TXT from GES2010.ACCIDENT
+          .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\ACCIDENT.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           39.92 seconds
+      cpu time            1.92 seconds
+
+
+210
+211  PROC EXPORT DATA= GES2010.vehicle
+212              OUTFILE= "R:\FILES\GES10\FlatFile\VEHICLE.TXT"
+213              DBMS=TAB REPLACE;
+214  RUN;
+
+215   /**********************************************************************
+216   *   PRODUCT:   SAS
+217   *   VERSION:   9.1
+218   *   CREATOR:   External File Interface
+219   *   DATE:      30NOV11
+220   *   DESC:      Generated SAS Datastep Code
+221   *   TEMPLATE SOURCE:  (None Specified.)
+222   ***********************************************************************/
+223      data _null_;
+224      set  GES2010.VEHICLE                              end=EFIEOD;
+225      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+226      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+227      file 'R:\FILES\GES10\FlatFile\VEHICLE.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+228         format CASENUM best12. ;
+229         format VEHNO best12. ;
+230         format VIN $12. ;
+231         format WEIGHT best12. ;
+232         format HAZ_ID bestx12. ;
+233         format MODEL_YR bestx12. ;
+234         format DZIPCODE $5. ;
+235         format MCARR_ID $9. ;
+236         format REGION bestx12. ;
+237         format HIT_RUN bestx12. ;
+238         format MAKE bestx12. ;
+239         format BODY_TYP bestx12. ;
+240         format SPEC_USE bestx12. ;
+241         format EMER_USE bestx12. ;
+242         format TOW_VEH bestx12. ;
+243         format JACKNIFE bestx12. ;
+244         format FIRE_EXP bestx12. ;
+245         format VTRAFCON bestx12. ;
+246         format DEFORMED bestx12. ;
+247         format TOWED bestx12. ;
+248         format P_CRASH1 bestx12. ;
+249         format ACC_TYPE bestx12. ;
+250         format IMPACT1 bestx12. ;
+251         format P_CRASH3 bestx12. ;
+252         format PCRASH4 bestx12. ;
+253         format PCRASH5 bestx12. ;
+254         format TRAV_SP bestx12. ;
+255         format ROLLOVER bestx12. ;
+256         format CARGO_BT bestx12. ;
+257         format HAZ_PLAC bestx12. ;
+258         format HAZ_REL bestx12. ;
+259         format DR_PRES bestx12. ;
+260         format SPEEDREL bestx12. ;
+261         format VSURCOND bestx12. ;
+262         format VPROFILE bestx12. ;
+263         format VALIGN bestx12. ;
+264         format VTRAFWAY bestx12. ;
+265         format V_EVENT bestx12. ;
+266         format VEH_ALCH bestx12. ;
+267         format MAX_VSEV bestx12. ;
+268         format STRATUM bestx12. ;
+269         format NUMOCCS best12. ;
+270         format ROLINLOC bestx12. ;
+271         format HAZ_INV bestx12. ;
+272         format HAZ_CNO bestx12. ;
+273         format VTCONT_F bestx12. ;
+274         format IMPACT2 bestx12. ;
+275         format BUS_USE bestx12. ;
+276         format V_CONFIG bestx12. ;
+277         format MHENUM best12. ;
+278         format MODEL best12. ;
+279         format NUM_INJV bestx12. ;
+280         format OCC_INVL best12. ;
+281         format P_CRASH2 bestx12. ;
+282         format PJ best12. ;
+283         format PSU best12. ;
+284         format PSUSTRAT best12. ;
+285         format VNUM_LAN bestx12. ;
+286         format VSPD_LIM bestx12. ;
+287         format MDLYR_IM bestx12. ;
+288         format HITRUN_IM bestx12. ;
+289         format BDYTYP_IM bestx12. ;
+290         format PCRASH1_IM bestx12. ;
+291         format IMPACT1_IM bestx12. ;
+292         format VEVENT_IM bestx12. ;
+293         format MXVSEV_IM bestx12. ;
+294         format NUMINJ_IM bestx12. ;
+295         format V_ALCH_IM bestx12. ;
+296      if _n_ = 1 then        /* write column names */
+297       do;
+298         put
+299         'CASENUM'
+300         '09'x
+301         'VEHNO'
+302         '09'x
+303         'VIN'
+304         '09'x
+305         'WEIGHT'
+306         '09'x
+307         'HAZ_ID'
+308         '09'x
+309         'MODEL_YR'
+310         '09'x
+311         'DZIPCODE'
+312         '09'x
+313         'MCARR_ID'
+314         '09'x
+315         'REGION'
+316         '09'x
+317         'HIT_RUN'
+318         '09'x
+319         'MAKE'
+320         '09'x
+321         'BODY_TYP'
+322         '09'x
+323         'SPEC_USE'
+324         '09'x
+325         'EMER_USE'
+326         '09'x
+327         'TOW_VEH'
+328         '09'x
+329         'JACKNIFE'
+330         '09'x
+331         'FIRE_EXP'
+332         '09'x
+333         'VTRAFCON'
+334         '09'x
+335         'DEFORMED'
+336         '09'x
+337         'TOWED'
+338         '09'x
+339         'P_CRASH1'
+340         '09'x
+341         'ACC_TYPE'
+342         '09'x
+343         'IMPACT1'
+344         '09'x
+345         'P_CRASH3'
+346         '09'x
+347         'PCRASH4'
+348         '09'x
+349         'PCRASH5'
+350         '09'x
+351         'TRAV_SP'
+352         '09'x
+353         'ROLLOVER'
+354         '09'x
+355         'CARGO_BT'
+356         '09'x
+357         'HAZ_PLAC'
+358         '09'x
+359         'HAZ_REL'
+360         '09'x
+361         'DR_PRES'
+362         '09'x
+363         'SPEEDREL'
+364         '09'x
+365         'VSURCOND'
+366         '09'x
+367         'VPROFILE'
+368         '09'x
+369         'VALIGN'
+370         '09'x
+371         'VTRAFWAY'
+372         '09'x
+373         'V_EVENT'
+374         '09'x
+375         'VEH_ALCH'
+376         '09'x
+377         'MAX_VSEV'
+378         '09'x
+379         'STRATUM'
+380         '09'x
+381         'NUMOCCS'
+382         '09'x
+383         'ROLINLOC'
+384         '09'x
+385         'HAZ_INV'
+386         '09'x
+387         'HAZ_CNO'
+388         '09'x
+389         'VTCONT_F'
+390         '09'x
+391         'IMPACT2'
+392         '09'x
+393         'BUS_USE'
+394         '09'x
+395         'V_CONFIG'
+396         '09'x
+397         'MHENUM'
+398         '09'x
+399         'MODEL'
+400         '09'x
+401         'NUM_INJV'
+402         '09'x
+403         'OCC_INVL'
+404         '09'x
+405         'P_CRASH2'
+406         '09'x
+407         'PJ'
+408         '09'x
+409         'PSU'
+410         '09'x
+411         'PSUSTRAT'
+412         '09'x
+413         'VNUM_LAN'
+414         '09'x
+415         'VSPD_LIM'
+416         '09'x
+417         'MDLYR_IM'
+418         '09'x
+419         'HITRUN_IM'
+420         '09'x
+421         'BDYTYP_IM'
+422         '09'x
+423         'PCRASH1_IM'
+424         '09'x
+425         'IMPACT1_IM'
+426         '09'x
+427         'VEVENT_IM'
+428         '09'x
+429         'MXVSEV_IM'
+430         '09'x
+431         'NUMINJ_IM'
+432         '09'x
+433         'V_ALCH_IM'
+434         ;
+435       end;
+436       do;
+437         EFIOUT + 1;
+438         put CASENUM @;
+439         put VEHNO @;
+440         put VIN $ @;
+441         put WEIGHT @;
+442         put HAZ_ID @;
+443         put MODEL_YR @;
+444         put DZIPCODE $ @;
+445         put MCARR_ID $ @;
+446         put REGION @;
+447         put HIT_RUN @;
+448         put MAKE @;
+449         put BODY_TYP @;
+450         put SPEC_USE @;
+451         put EMER_USE @;
+452         put TOW_VEH @;
+453         put JACKNIFE @;
+454         put FIRE_EXP @;
+455         put VTRAFCON @;
+456         put DEFORMED @;
+457         put TOWED @;
+458         put P_CRASH1 @;
+459         put ACC_TYPE @;
+460         put IMPACT1 @;
+461         put P_CRASH3 @;
+462         put PCRASH4 @;
+463         put PCRASH5 @;
+464         put TRAV_SP @;
+465         put ROLLOVER @;
+466         put CARGO_BT @;
+467         put HAZ_PLAC @;
+468         put HAZ_REL @;
+469         put DR_PRES @;
+470         put SPEEDREL @;
+471         put VSURCOND @;
+472         put VPROFILE @;
+473         put VALIGN @;
+474         put VTRAFWAY @;
+475         put V_EVENT @;
+476         put VEH_ALCH @;
+477         put MAX_VSEV @;
+478         put STRATUM @;
+479         put NUMOCCS @;
+480         put ROLINLOC @;
+481         put HAZ_INV @;
+482         put HAZ_CNO @;
+483         put VTCONT_F @;
+484         put IMPACT2 @;
+485         put BUS_USE @;
+486         put V_CONFIG @;
+487         put MHENUM @;
+488         put MODEL @;
+489         put NUM_INJV @;
+490         put OCC_INVL @;
+491         put P_CRASH2 @;
+492         put PJ @;
+493         put PSU @;
+494         put PSUSTRAT @;
+495         put VNUM_LAN @;
+496         put VSPD_LIM @;
+497         put MDLYR_IM @;
+498         put HITRUN_IM @;
+499         put BDYTYP_IM @;
+500         put PCRASH1_IM @;
+501         put IMPACT1_IM @;
+502         put VEVENT_IM @;
+503         put MXVSEV_IM @;
+504         put NUMINJ_IM @;
+505         put V_ALCH_IM ;
+506         ;
+507       end;
+508      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+509      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+510      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\VEHICLE.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\VEHICLE.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 81407 records were written to the file 'R:\FILES\GES10\FlatFile\VEHICLE.TXT'.
+      The minimum record length was 181.
+      The maximum record length was 566.
+NOTE: There were 81406 observations read from the data set GES2010.VEHICLE.
+NOTE: DATA statement used (Total process time):
+      real time           1:12.68
+      cpu time            4.20 seconds
+
+
+81406 records created in R:\FILES\GES10\FlatFile\VEHICLE.TXT from GES2010.VEHICLE
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\VEHICLE.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           1:13.29
+      cpu time            4.42 seconds
+
+
+511
+512  PROC EXPORT DATA= GES2010.parked
+513              OUTFILE= "R:\FILES\GES10\FlatFile\PARKED.TXT"
+514              DBMS=TAB REPLACE;
+515  RUN;
+
+516   /**********************************************************************
+517   *   PRODUCT:   SAS
+518   *   VERSION:   9.1
+519   *   CREATOR:   External File Interface
+520   *   DATE:      30NOV11
+521   *   DESC:      Generated SAS Datastep Code
+522   *   TEMPLATE SOURCE:  (None Specified.)
+523   ***********************************************************************/
+524      data _null_;
+525      set  GES2010.PARKED                               end=EFIEOD;
+526      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+527      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+528      file 'R:\FILES\GES10\FlatFile\PARKED.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+529         format REGION bestx12. ;
+530         format STRATUM bestx12. ;
+531         format PMAKE bestx12. ;
+532         format PBODYTYP bestx12. ;
+533         format PSP_USE bestx12. ;
+534         format PEM_USE bestx12. ;
+535         format PTRAILER bestx12. ;
+536         format PFIRE bestx12. ;
+537         format PVEH_SEV bestx12. ;
+538         format PTOWED bestx12. ;
+539         format PROLLOVR bestx12. ;
+540         format PCARGTYP bestx12. ;
+541         format PHAZPLAC bestx12. ;
+542         format PHAZ_REL bestx12. ;
+543         format PTYPE bestx12. ;
+544         format PROLINLOC bestx12. ;
+545         format PHAZ_INV bestx12. ;
+546         format PHAZ_CNO bestx12. ;
+547         format PIMPACT2 bestx12. ;
+548         format PV_CONFIG bestx12. ;
+549         format PVIN $12. ;
+550         format PMODELYR bestx12. ;
+551         format CASENUM best12. ;
+552         format WEIGHT best12. ;
+553         format PCARIDNO $9. ;
+554         format PHAZ_ID bestx12. ;
+555         format PIMPACT1 bestx12. ;
+556         format PJ best12. ;
+557         format PMODEL best12. ;
+558         format PNUMOCCS best12. ;
+559         format POCCINVL best12. ;
+560         format PREL_RWY bestx12. ;
+561         format PSU best12. ;
+562         format PVEHNO best12. ;
+563      if _n_ = 1 then        /* write column names */
+564       do;
+565         put
+566         'REGION'
+567         '09'x
+568         'STRATUM'
+569         '09'x
+570         'PMAKE'
+571         '09'x
+572         'PBODYTYP'
+573         '09'x
+574         'PSP_USE'
+575         '09'x
+576         'PEM_USE'
+577         '09'x
+578         'PTRAILER'
+579         '09'x
+580         'PFIRE'
+581         '09'x
+582         'PVEH_SEV'
+583         '09'x
+584         'PTOWED'
+585         '09'x
+586         'PROLLOVR'
+587         '09'x
+588         'PCARGTYP'
+589         '09'x
+590         'PHAZPLAC'
+591         '09'x
+592         'PHAZ_REL'
+593         '09'x
+594         'PTYPE'
+595         '09'x
+596         'PROLINLOC'
+597         '09'x
+598         'PHAZ_INV'
+599         '09'x
+600         'PHAZ_CNO'
+601         '09'x
+602         'PIMPACT2'
+603         '09'x
+604         'PV_CONFIG'
+605         '09'x
+606         'PVIN'
+607         '09'x
+608         'PMODELYR'
+609         '09'x
+610         'CASENUM'
+611         '09'x
+612         'WEIGHT'
+613         '09'x
+614         'PCARIDNO'
+615         '09'x
+616         'PHAZ_ID'
+617         '09'x
+618         'PIMPACT1'
+619         '09'x
+620         'PJ'
+621         '09'x
+622         'PMODEL'
+623         '09'x
+624         'PNUMOCCS'
+625         '09'x
+626         'POCCINVL'
+627         '09'x
+628         'PREL_RWY'
+629         '09'x
+630         'PSU'
+631         '09'x
+632         'PVEHNO'
+633         ;
+634       end;
+635       do;
+636         EFIOUT + 1;
+637         put REGION @;
+638         put STRATUM @;
+639         put PMAKE @;
+640         put PBODYTYP @;
+641         put PSP_USE @;
+642         put PEM_USE @;
+643         put PTRAILER @;
+644         put PFIRE @;
+645         put PVEH_SEV @;
+646         put PTOWED @;
+647         put PROLLOVR @;
+648         put PCARGTYP @;
+649         put PHAZPLAC @;
+650         put PHAZ_REL @;
+651         put PTYPE @;
+652         put PROLINLOC @;
+653         put PHAZ_INV @;
+654         put PHAZ_CNO @;
+655         put PIMPACT2 @;
+656         put PV_CONFIG @;
+657         put PVIN $ @;
+658         put PMODELYR @;
+659         put CASENUM @;
+660         put WEIGHT @;
+661         put PCARIDNO $ @;
+662         put PHAZ_ID @;
+663         put PIMPACT1 @;
+664         put PJ @;
+665         put PMODEL @;
+666         put PNUMOCCS @;
+667         put POCCINVL @;
+668         put PREL_RWY @;
+669         put PSU @;
+670         put PVEHNO ;
+671         ;
+672       end;
+673      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+674      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+675      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\PARKED.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\PARKED.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 2568 records were written to the file 'R:\FILES\GES10\FlatFile\PARKED.TXT'.
+      The minimum record length was 103.
+      The maximum record length was 268.
+NOTE: There were 2567 observations read from the data set GES2010.PARKED.
+NOTE: DATA statement used (Total process time):
+      real time           1.32 seconds
+      cpu time            0.09 seconds
+
+
+2567 records created in R:\FILES\GES10\FlatFile\PARKED.TXT from GES2010.PARKED
+       .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\PARKED.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           1.73 seconds
+      cpu time            0.23 seconds
+
+
+676
+677  PROC EXPORT DATA= GES2010.person
+678              OUTFILE= "R:\FILES\GES10\FlatFile\PERSON.TXT"
+679              DBMS=TAB REPLACE;
+680  RUN;
+
+681   /**********************************************************************
+682   *   PRODUCT:   SAS
+683   *   VERSION:   9.1
+684   *   CREATOR:   External File Interface
+685   *   DATE:      30NOV11
+686   *   DESC:      Generated SAS Datastep Code
+687   *   TEMPLATE SOURCE:  (None Specified.)
+688   ***********************************************************************/
+689      data _null_;
+690      set  GES2010.PERSON                               end=EFIEOD;
+691      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+692      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+693      file 'R:\FILES\GES10\FlatFile\PERSON.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+694         format CASENUM best12. ;
+695         format VEHNO best12. ;
+696         format PERNO best12. ;
+697         format WEIGHT best12. ;
+698         format PER_TYP bestx12. ;
+699         format SEAT_POS bestx12. ;
+700         format EJECTION bestx12. ;
+701         format SEX bestx12. ;
+702         format INJ_SEV bestx12. ;
+703         format HOSPITAL bestx12. ;
+704         format PER_ALCH bestx12. ;
+705         format PER_DRUG bestx12. ;
+706         format LOCATN bestx12. ;
+707         format AIR_BAG bestx12. ;
+708         format REGION bestx12. ;
+709         format REST_SYS bestx12. ;
+710         format STRATUM bestx12. ;
+711         format ALCHTEST bestx12. ;
+712         format ALTSTYPE bestx12. ;
+713         format ALTRSULT bestx12. ;
+714         format DRUGTEST bestx12. ;
+715         format AGE bestx12. ;
+716         format DRTSTYPE bestx12. ;
+717         format DRTRSULT bestx12. ;
+718         format REST_MIS bestx12. ;
+719         format PJ best12. ;
+720         format PSU best12. ;
+721         format PVEHNO best12. ;
+722         format STR_VEH best12. ;
+723         format EJECT_IM bestx12. ;
+724         format SEX_IM bestx12. ;
+725         format INJSEV_IM bestx12. ;
+726         format PERALCH_IM bestx12. ;
+727         format SEAT_IM bestx12. ;
+728         format AGE_IM bestx12. ;
+729      if _n_ = 1 then        /* write column names */
+730       do;
+731         put
+732         'CASENUM'
+733         '09'x
+734         'VEHNO'
+735         '09'x
+736         'PERNO'
+737         '09'x
+738         'WEIGHT'
+739         '09'x
+740         'PER_TYP'
+741         '09'x
+742         'SEAT_POS'
+743         '09'x
+744         'EJECTION'
+745         '09'x
+746         'SEX'
+747         '09'x
+748         'INJ_SEV'
+749         '09'x
+750         'HOSPITAL'
+751         '09'x
+752         'PER_ALCH'
+753         '09'x
+754         'PER_DRUG'
+755         '09'x
+756         'LOCATN'
+757         '09'x
+758         'AIR_BAG'
+759         '09'x
+760         'REGION'
+761         '09'x
+762         'REST_SYS'
+763         '09'x
+764         'STRATUM'
+765         '09'x
+766         'ALCHTEST'
+767         '09'x
+768         'ALTSTYPE'
+769         '09'x
+770         'ALTRSULT'
+771         '09'x
+772         'DRUGTEST'
+773         '09'x
+774         'AGE'
+775         '09'x
+776         'DRTSTYPE'
+777         '09'x
+778         'DRTRSULT'
+779         '09'x
+780         'REST_MIS'
+781         '09'x
+782         'PJ'
+783         '09'x
+784         'PSU'
+785         '09'x
+786         'PVEHNO'
+787         '09'x
+788         'STR_VEH'
+789         '09'x
+790         'EJECT_IM'
+791         '09'x
+792         'SEX_IM'
+793         '09'x
+794         'INJSEV_IM'
+795         '09'x
+796         'PERALCH_IM'
+797         '09'x
+798         'SEAT_IM'
+799         '09'x
+800         'AGE_IM'
+801         ;
+802       end;
+803       do;
+804         EFIOUT + 1;
+805         put CASENUM @;
+806         put VEHNO @;
+807         put PERNO @;
+808         put WEIGHT @;
+809         put PER_TYP @;
+810         put SEAT_POS @;
+811         put EJECTION @;
+812         put SEX @;
+813         put INJ_SEV @;
+814         put HOSPITAL @;
+815         put PER_ALCH @;
+816         put PER_DRUG @;
+817         put LOCATN @;
+818         put AIR_BAG @;
+819         put REGION @;
+820         put REST_SYS @;
+821         put STRATUM @;
+822         put ALCHTEST @;
+823         put ALTSTYPE @;
+824         put ALTRSULT @;
+825         put DRUGTEST @;
+826         put AGE @;
+827         put DRTSTYPE @;
+828         put DRTRSULT @;
+829         put REST_MIS @;
+830         put PJ @;
+831         put PSU @;
+832         put PVEHNO @;
+833         put STR_VEH @;
+834         put EJECT_IM @;
+835         put SEX_IM @;
+836         put INJSEV_IM @;
+837         put PERALCH_IM @;
+838         put SEAT_IM @;
+839         put AGE_IM ;
+840         ;
+841       end;
+842      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+843      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+844      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\PERSON.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\PERSON.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 116021 records were written to the file 'R:\FILES\GES10\FlatFile\PERSON.TXT'.
+      The minimum record length was 87.
+      The maximum record length was 271.
+NOTE: There were 116020 observations read from the data set GES2010.PERSON.
+NOTE: DATA statement used (Total process time):
+      real time           54.01 seconds
+      cpu time            2.81 seconds
+
+
+116020 records created in R:\FILES\GES10\FlatFile\PERSON.TXT from GES2010.PERSON
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\PERSON.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           54.42 seconds
+      cpu time            2.93 seconds
+
+
+845
+846  PROC EXPORT DATA= GES2010.cevent
+847              OUTFILE= "R:\FILES\GES10\FlatFile\CEVENT.TXT"
+848              DBMS=TAB REPLACE;
+849  RUN;
+
+850   /**********************************************************************
+851   *   PRODUCT:   SAS
+852   *   VERSION:   9.1
+853   *   CREATOR:   External File Interface
+854   *   DATE:      30NOV11
+855   *   DESC:      Generated SAS Datastep Code
+856   *   TEMPLATE SOURCE:  (None Specified.)
+857   ***********************************************************************/
+858      data _null_;
+859      set  GES2010.CEVENT                               end=EFIEOD;
+860      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+861      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+862      file 'R:\FILES\GES10\FlatFile\CEVENT.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+863         format OBJCONT bestx12. ;
+864         format STRATUM bestx12. ;
+865         format E_ACTION bestx12. ;
+866         format CASENUM best12. ;
+867         format WEIGHT best12. ;
+868         format EVENTNUM best12. ;
+869         format GAD bestx12. ;
+870         format OBJGAD bestx12. ;
+871         format PJ best12. ;
+872         format PSU best12. ;
+873         format REGION bestx12. ;
+874         format VEHNUM best12. ;
+875      if _n_ = 1 then        /* write column names */
+876       do;
+877         put
+878         'OBJCONT'
+879         '09'x
+880         'STRATUM'
+881         '09'x
+882         'E_ACTION'
+883         '09'x
+884         'CASENUM'
+885         '09'x
+886         'WEIGHT'
+887         '09'x
+888         'EVENTNUM'
+889         '09'x
+890         'GAD'
+891         '09'x
+892         'OBJGAD'
+893         '09'x
+894         'PJ'
+895         '09'x
+896         'PSU'
+897         '09'x
+898         'REGION'
+899         '09'x
+900         'VEHNUM'
+901         ;
+902       end;
+903       do;
+904         EFIOUT + 1;
+905         put OBJCONT @;
+906         put STRATUM @;
+907         put E_ACTION @;
+908         put CASENUM @;
+909         put WEIGHT @;
+910         put EVENTNUM @;
+911         put GAD @;
+912         put OBJGAD @;
+913         put PJ @;
+914         put PSU @;
+915         put REGION @;
+916         put VEHNUM ;
+917         ;
+918       end;
+919      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+920      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+921      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\CEVENT.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\CEVENT.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 87078 records were written to the file 'R:\FILES\GES10\FlatFile\CEVENT.TXT'.
+      The minimum record length was 37.
+      The maximum record length was 80.
+NOTE: There were 87077 observations read from the data set GES2010.CEVENT.
+NOTE: DATA statement used (Total process time):
+      real time           33.26 seconds
+      cpu time            1.45 seconds
+
+
+87077 records created in R:\FILES\GES10\FlatFile\CEVENT.TXT from GES2010.CEVENT
+        .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\CEVENT.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           33.59 seconds
+      cpu time            1.51 seconds
+
+
+922
+923  PROC EXPORT DATA= GES2010.vevent
+924              OUTFILE= "R:\FILES\GES10\FlatFile\VEVENT.TXT"
+925              DBMS=TAB REPLACE;
+926  RUN;
+
+927   /**********************************************************************
+928   *   PRODUCT:   SAS
+929   *   VERSION:   9.1
+930   *   CREATOR:   External File Interface
+931   *   DATE:      30NOV11
+932   *   DESC:      Generated SAS Datastep Code
+933   *   TEMPLATE SOURCE:  (None Specified.)
+934   ***********************************************************************/
+935      data _null_;
+936      set  GES2010.VEVENT                               end=EFIEOD;
+937      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+938      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+939      file 'R:\FILES\GES10\FlatFile\VEVENT.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+940         format OBJCONT bestx12. ;
+941         format STRATUM bestx12. ;
+942         format E_ACTION bestx12. ;
+943         format CASENUM best12. ;
+944         format WEIGHT best12. ;
+945         format EVENTNUM best12. ;
+946         format GAD bestx12. ;
+947         format OBJGAD bestx12. ;
+948         format PGAD bestx12. ;
+949         format PJ best12. ;
+950         format PSU best12. ;
+951         format PVEHNUM best12. ;
+952         format REGION bestx12. ;
+953         format VEHNO best12. ;
+954         format VEHNUM best12. ;
+955      if _n_ = 1 then        /* write column names */
+956       do;
+957         put
+958         'OBJCONT'
+959         '09'x
+960         'STRATUM'
+961         '09'x
+962         'E_ACTION'
+963         '09'x
+964         'CASENUM'
+965         '09'x
+966         'WEIGHT'
+967         '09'x
+968         'EVENTNUM'
+969         '09'x
+970         'GAD'
+971         '09'x
+972         'OBJGAD'
+973         '09'x
+974         'PGAD'
+975         '09'x
+976         'PJ'
+977         '09'x
+978         'PSU'
+979         '09'x
+980         'PVEHNUM'
+981         '09'x
+982         'REGION'
+983         '09'x
+984         'VEHNO'
+985         '09'x
+986         'VEHNUM'
+987         ;
+988       end;
+989       do;
+990         EFIOUT + 1;
+991         put OBJCONT @;
+992         put STRATUM @;
+993         put E_ACTION @;
+994         put CASENUM @;
+995         put WEIGHT @;
+996         put EVENTNUM @;
+997         put GAD @;
+998         put OBJGAD @;
+999         put PGAD @;
+1000         put PJ @;
+1001         put PSU @;
+1002         put PVEHNUM @;
+1003         put REGION @;
+1004         put VEHNO @;
+1005         put VEHNUM ;
+1006         ;
+1007       end;
+1008      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1009      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1010      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\VEVENT.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\VEVENT.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 122434 records were written to the file 'R:\FILES\GES10\FlatFile\VEVENT.TXT'.
+      The minimum record length was 41.
+      The maximum record length was 99.
+NOTE: There were 122433 observations read from the data set GES2010.VEVENT.
+NOTE: DATA statement used (Total process time):
+      real time           36.09 seconds
+      cpu time            1.95 seconds
+
+
+122433 records created in R:\FILES\GES10\FlatFile\VEVENT.TXT from GES2010.VEVENT
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\VEVENT.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           36.49 seconds
+      cpu time            2.07 seconds
+
+
+1011
+1012  PROC EXPORT DATA= GES2010.parkevnt
+1013              OUTFILE= "R:\FILES\GES10\FlatFile\PARKEVNT.TXT"
+1014              DBMS=TAB REPLACE;
+1015  RUN;
+
+1016   /**********************************************************************
+1017   *   PRODUCT:   SAS
+1018   *   VERSION:   9.1
+1019   *   CREATOR:   External File Interface
+1020   *   DATE:      30NOV11
+1021   *   DESC:      Generated SAS Datastep Code
+1022   *   TEMPLATE SOURCE:  (None Specified.)
+1023   ***********************************************************************/
+1024      data _null_;
+1025      set  GES2010.PARKEVNT                             end=EFIEOD;
+1026      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1027      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1028      file 'R:\FILES\GES10\FlatFile\PARKEVNT.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1029         format REGION bestx12. ;
+1030         format STRATUM bestx12. ;
+1031         format CASENUM best12. ;
+1032         format WEIGHT best12. ;
+1033         format EVENTNUM best12. ;
+1034         format PGAD bestx12. ;
+1035         format PVEHNO best12. ;
+1036         format PJ best12. ;
+1037         format PSU best12. ;
+1038      if _n_ = 1 then        /* write column names */
+1039       do;
+1040         put
+1041         'REGION'
+1042         '09'x
+1043         'STRATUM'
+1044         '09'x
+1045         'CASENUM'
+1046         '09'x
+1047         'WEIGHT'
+1048         '09'x
+1049         'EVENTNUM'
+1050         '09'x
+1051         'PGAD'
+1052         '09'x
+1053         'PVEHNO'
+1054         '09'x
+1055         'PJ'
+1056         '09'x
+1057         'PSU'
+1058         ;
+1059       end;
+1060       do;
+1061         EFIOUT + 1;
+1062         put REGION @;
+1063         put STRATUM @;
+1064         put CASENUM @;
+1065         put WEIGHT @;
+1066         put EVENTNUM @;
+1067         put PGAD @;
+1068         put PVEHNO @;
+1069         put PJ @;
+1070         put PSU ;
+1071         ;
+1072       end;
+1073      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1074      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1075      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\PARKEVNT.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\PARKEVNT.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 2587 records were written to the file 'R:\FILES\GES10\FlatFile\PARKEVNT.TXT'.
+      The minimum record length was 30.
+      The maximum record length was 57.
+NOTE: There were 2586 observations read from the data set GES2010.PARKEVNT.
+NOTE: DATA statement used (Total process time):
+      real time           0.90 seconds
+      cpu time            0.04 seconds
+
+
+2586 records created in R:\FILES\GES10\FlatFile\PARKEVNT.TXT from GES2010.PARKEVNT
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\PARKEVNT.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           1.29 seconds
+      cpu time            0.23 seconds
+
+
+1076
+1077  PROC EXPORT DATA= GES2010.biketraf
+1078              OUTFILE= "R:\FILES\GES10\FlatFile\BIKETRAF.TXT"
+1079              DBMS=TAB REPLACE;
+1080  RUN;
+
+1081   /**********************************************************************
+1082   *   PRODUCT:   SAS
+1083   *   VERSION:   9.1
+1084   *   CREATOR:   External File Interface
+1085   *   DATE:      30NOV11
+1086   *   DESC:      Generated SAS Datastep Code
+1087   *   TEMPLATE SOURCE:  (None Specified.)
+1088   ***********************************************************************/
+1089      data _null_;
+1090      set  GES2010.BIKETRAF                             end=EFIEOD;
+1091      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1092      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1093      file 'R:\FILES\GES10\FlatFile\BIKETRAF.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1094         format BTRAFCON bestx12. ;
+1095         format REGION bestx12. ;
+1096         format STRATUM bestx12. ;
+1097         format CASENUM best12. ;
+1098         format WEIGHT best12. ;
+1099         format PERNO best12. ;
+1100         format PJ best12. ;
+1101         format PSU best12. ;
+1102      if _n_ = 1 then        /* write column names */
+1103       do;
+1104         put
+1105         'BTRAFCON'
+1106         '09'x
+1107         'REGION'
+1108         '09'x
+1109         'STRATUM'
+1110         '09'x
+1111         'CASENUM'
+1112         '09'x
+1113         'WEIGHT'
+1114         '09'x
+1115         'PERNO'
+1116         '09'x
+1117         'PJ'
+1118         '09'x
+1119         'PSU'
+1120         ;
+1121       end;
+1122       do;
+1123         EFIOUT + 1;
+1124         put BTRAFCON @;
+1125         put REGION @;
+1126         put STRATUM @;
+1127         put CASENUM @;
+1128         put WEIGHT @;
+1129         put PERNO @;
+1130         put PJ @;
+1131         put PSU ;
+1132         ;
+1133       end;
+1134      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1135      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1136      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\BIKETRAF.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\BIKETRAF.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 1386 records were written to the file 'R:\FILES\GES10\FlatFile\BIKETRAF.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 1385 observations read from the data set GES2010.BIKETRAF.
+NOTE: DATA statement used (Total process time):
+      real time           0.56 seconds
+      cpu time            0.07 seconds
+
+
+1385 records created in R:\FILES\GES10\FlatFile\BIKETRAF.TXT from GES2010.BIKETRAF
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\BIKETRAF.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           0.96 seconds
+      cpu time            0.20 seconds
+
+
+1137
+1138  PROC EXPORT DATA= GES2010.distract
+1139              OUTFILE= "R:\FILES\GES10\FlatFile\DISTRACT.TXT"
+1140              DBMS=TAB REPLACE;
+1141  RUN;
+
+1142   /**********************************************************************
+1143   *   PRODUCT:   SAS
+1144   *   VERSION:   9.1
+1145   *   CREATOR:   External File Interface
+1146   *   DATE:      30NOV11
+1147   *   DESC:      Generated SAS Datastep Code
+1148   *   TEMPLATE SOURCE:  (None Specified.)
+1149   ***********************************************************************/
+1150      data _null_;
+1151      set  GES2010.DISTRACT                             end=EFIEOD;
+1152      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1153      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1154      file 'R:\FILES\GES10\FlatFile\DISTRACT.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1155         format MDRDSTRD bestx12. ;
+1156         format REGION bestx12. ;
+1157         format STRATUM bestx12. ;
+1158         format CASENUM best12. ;
+1159         format WEIGHT best12. ;
+1160         format PJ best12. ;
+1161         format PSU best12. ;
+1162         format VEHNO best12. ;
+1163      if _n_ = 1 then        /* write column names */
+1164       do;
+1165         put
+1166         'MDRDSTRD'
+1167         '09'x
+1168         'REGION'
+1169         '09'x
+1170         'STRATUM'
+1171         '09'x
+1172         'CASENUM'
+1173         '09'x
+1174         'WEIGHT'
+1175         '09'x
+1176         'PJ'
+1177         '09'x
+1178         'PSU'
+1179         '09'x
+1180         'VEHNO'
+1181         ;
+1182       end;
+1183       do;
+1184         EFIOUT + 1;
+1185         put MDRDSTRD @;
+1186         put REGION @;
+1187         put STRATUM @;
+1188         put CASENUM @;
+1189         put WEIGHT @;
+1190         put PJ @;
+1191         put PSU @;
+1192         put VEHNO ;
+1193         ;
+1194       end;
+1195      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1196      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1197      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\DISTRACT.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\DISTRACT.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 81459 records were written to the file 'R:\FILES\GES10\FlatFile\DISTRACT.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 81458 observations read from the data set GES2010.DISTRACT.
+NOTE: DATA statement used (Total process time):
+      real time           20.38 seconds
+      cpu time            0.85 seconds
+
+
+81458 records created in R:\FILES\GES10\FlatFile\DISTRACT.TXT from GES2010.DISTRACT
+          .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\DISTRACT.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           20.86 seconds
+      cpu time            0.92 seconds
+
+
+1198
+1199  PROC EXPORT DATA= GES2010.factor
+1200              OUTFILE= "R:\FILES\GES10\FlatFile\FACTOR.TXT"
+1201              DBMS=TAB REPLACE;
+1202  RUN;
+
+1203   /**********************************************************************
+1204   *   PRODUCT:   SAS
+1205   *   VERSION:   9.1
+1206   *   CREATOR:   External File Interface
+1207   *   DATE:      30NOV11
+1208   *   DESC:      Generated SAS Datastep Code
+1209   *   TEMPLATE SOURCE:  (None Specified.)
+1210   ***********************************************************************/
+1211      data _null_;
+1212      set  GES2010.FACTOR                               end=EFIEOD;
+1213      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1214      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1215      file 'R:\FILES\GES10\FlatFile\FACTOR.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1216         format MFACTOR bestx12. ;
+1217         format REGION bestx12. ;
+1218         format STRATUM bestx12. ;
+1219         format CASENUM best12. ;
+1220         format WEIGHT best12. ;
+1221         format PJ best12. ;
+1222         format PSU best12. ;
+1223         format VEHNO best12. ;
+1224      if _n_ = 1 then        /* write column names */
+1225       do;
+1226         put
+1227         'MFACTOR'
+1228         '09'x
+1229         'REGION'
+1230         '09'x
+1231         'STRATUM'
+1232         '09'x
+1233         'CASENUM'
+1234         '09'x
+1235         'WEIGHT'
+1236         '09'x
+1237         'PJ'
+1238         '09'x
+1239         'PSU'
+1240         '09'x
+1241         'VEHNO'
+1242         ;
+1243       end;
+1244       do;
+1245         EFIOUT + 1;
+1246         put MFACTOR @;
+1247         put REGION @;
+1248         put STRATUM @;
+1249         put CASENUM @;
+1250         put WEIGHT @;
+1251         put PJ @;
+1252         put PSU @;
+1253         put VEHNO ;
+1254         ;
+1255       end;
+1256      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1257      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1258      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\FACTOR.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\FACTOR.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 81454 records were written to the file 'R:\FILES\GES10\FlatFile\FACTOR.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 50.
+NOTE: There were 81453 observations read from the data set GES2010.FACTOR.
+NOTE: DATA statement used (Total process time):
+      real time           18.39 seconds
+      cpu time            0.76 seconds
+
+
+81453 records created in R:\FILES\GES10\FlatFile\FACTOR.TXT from GES2010.FACTOR
+        .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\FACTOR.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           18.81 seconds
+      cpu time            0.85 seconds
+
+
+1259
+1260  PROC EXPORT DATA= GES2010.safetyeq
+1261              OUTFILE= "R:\FILES\GES10\FlatFile\SAFETYEQ.TXT"
+1262              DBMS=TAB REPLACE;
+1263  RUN;
+
+1264   /**********************************************************************
+1265   *   PRODUCT:   SAS
+1266   *   VERSION:   9.1
+1267   *   CREATOR:   External File Interface
+1268   *   DATE:      30NOV11
+1269   *   DESC:      Generated SAS Datastep Code
+1270   *   TEMPLATE SOURCE:  (None Specified.)
+1271   ***********************************************************************/
+1272      data _null_;
+1273      set  GES2010.SAFETYEQ                             end=EFIEOD;
+1274      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1275      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1276      file 'R:\FILES\GES10\FlatFile\SAFETYEQ.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1277         format MSAFEQMT bestx12. ;
+1278         format REGION bestx12. ;
+1279         format STRATUM bestx12. ;
+1280         format CASENUM best12. ;
+1281         format WEIGHT best12. ;
+1282         format PERNO best12. ;
+1283         format PJ best12. ;
+1284         format PSU best12. ;
+1285      if _n_ = 1 then        /* write column names */
+1286       do;
+1287         put
+1288         'MSAFEQMT'
+1289         '09'x
+1290         'REGION'
+1291         '09'x
+1292         'STRATUM'
+1293         '09'x
+1294         'CASENUM'
+1295         '09'x
+1296         'WEIGHT'
+1297         '09'x
+1298         'PERNO'
+1299         '09'x
+1300         'PJ'
+1301         '09'x
+1302         'PSU'
+1303         ;
+1304       end;
+1305       do;
+1306         EFIOUT + 1;
+1307         put MSAFEQMT @;
+1308         put REGION @;
+1309         put STRATUM @;
+1310         put CASENUM @;
+1311         put WEIGHT @;
+1312         put PERNO @;
+1313         put PJ @;
+1314         put PSU ;
+1315         ;
+1316       end;
+1317      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1318      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1319      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\SAFETYEQ.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\SAFETYEQ.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 3298 records were written to the file 'R:\FILES\GES10\FlatFile\SAFETYEQ.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 3297 observations read from the data set GES2010.SAFETYEQ.
+NOTE: DATA statement used (Total process time):
+      real time           1.50 seconds
+      cpu time            0.07 seconds
+
+
+3297 records created in R:\FILES\GES10\FlatFile\SAFETYEQ.TXT from GES2010.SAFETYEQ
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\SAFETYEQ.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           1.90 seconds
+      cpu time            0.21 seconds
+
+
+1320
+1321  PROC EXPORT DATA= GES2010.impair
+1322              OUTFILE= "R:\FILES\GES10\FlatFile\IMPAIR.TXT"
+1323              DBMS=TAB REPLACE;
+1324  RUN;
+
+1325   /**********************************************************************
+1326   *   PRODUCT:   SAS
+1327   *   VERSION:   9.1
+1328   *   CREATOR:   External File Interface
+1329   *   DATE:      30NOV11
+1330   *   DESC:      Generated SAS Datastep Code
+1331   *   TEMPLATE SOURCE:  (None Specified.)
+1332   ***********************************************************************/
+1333      data _null_;
+1334      set  GES2010.IMPAIR                               end=EFIEOD;
+1335      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1336      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1337      file 'R:\FILES\GES10\FlatFile\IMPAIR.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1338         format MIMPAIR bestx12. ;
+1339         format REGION bestx12. ;
+1340         format STRATUM bestx12. ;
+1341         format CASENUM best12. ;
+1342         format WEIGHT best12. ;
+1343         format PERNO best12. ;
+1344         format PJ best12. ;
+1345         format PSU best12. ;
+1346         format VEHNO best12. ;
+1347      if _n_ = 1 then        /* write column names */
+1348       do;
+1349         put
+1350         'MIMPAIR'
+1351         '09'x
+1352         'REGION'
+1353         '09'x
+1354         'STRATUM'
+1355         '09'x
+1356         'CASENUM'
+1357         '09'x
+1358         'WEIGHT'
+1359         '09'x
+1360         'PERNO'
+1361         '09'x
+1362         'PJ'
+1363         '09'x
+1364         'PSU'
+1365         '09'x
+1366         'VEHNO'
+1367         ;
+1368       end;
+1369       do;
+1370         EFIOUT + 1;
+1371         put MIMPAIR @;
+1372         put REGION @;
+1373         put STRATUM @;
+1374         put CASENUM @;
+1375         put WEIGHT @;
+1376         put PERNO @;
+1377         put PJ @;
+1378         put PSU @;
+1379         put VEHNO ;
+1380         ;
+1381       end;
+1382      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1383      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1384      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\IMPAIR.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\IMPAIR.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 84587 records were written to the file 'R:\FILES\GES10\FlatFile\IMPAIR.TXT'.
+      The minimum record length was 29.
+      The maximum record length was 56.
+NOTE: There were 84586 observations read from the data set GES2010.IMPAIR.
+NOTE: DATA statement used (Total process time):
+      real time           30.16 seconds
+      cpu time            0.78 seconds
+
+
+84586 records created in R:\FILES\GES10\FlatFile\IMPAIR.TXT from GES2010.IMPAIR
+        .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\IMPAIR.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           30.52 seconds
+      cpu time            0.89 seconds
+
+
+1385
+1386  PROC EXPORT DATA= GES2010.nmcrash
+1387              OUTFILE= "R:\FILES\GES10\FlatFile\NMCRASH.TXT"
+1388              DBMS=TAB REPLACE;
+1389  RUN;
+
+1390   /**********************************************************************
+1391   *   PRODUCT:   SAS
+1392   *   VERSION:   9.1
+1393   *   CREATOR:   External File Interface
+1394   *   DATE:      30NOV11
+1395   *   DESC:      Generated SAS Datastep Code
+1396   *   TEMPLATE SOURCE:  (None Specified.)
+1397   ***********************************************************************/
+1398      data _null_;
+1399      set  GES2010.NMCRASH                              end=EFIEOD;
+1400      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1401      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1402      file 'R:\FILES\GES10\FlatFile\NMCRASH.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1403         format MTM_CRSH bestx12. ;
+1404         format REGION bestx12. ;
+1405         format STRATUM bestx12. ;
+1406         format CASENUM best12. ;
+1407         format WEIGHT best12. ;
+1408         format PERNO best12. ;
+1409         format PJ best12. ;
+1410         format PSU best12. ;
+1411      if _n_ = 1 then        /* write column names */
+1412       do;
+1413         put
+1414         'MTM_CRSH'
+1415         '09'x
+1416         'REGION'
+1417         '09'x
+1418         'STRATUM'
+1419         '09'x
+1420         'CASENUM'
+1421         '09'x
+1422         'WEIGHT'
+1423         '09'x
+1424         'PERNO'
+1425         '09'x
+1426         'PJ'
+1427         '09'x
+1428         'PSU'
+1429         ;
+1430       end;
+1431       do;
+1432         EFIOUT + 1;
+1433         put MTM_CRSH @;
+1434         put REGION @;
+1435         put STRATUM @;
+1436         put CASENUM @;
+1437         put WEIGHT @;
+1438         put PERNO @;
+1439         put PJ @;
+1440         put PSU ;
+1441         ;
+1442       end;
+1443      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1444      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1445      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\NMCRASH.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\NMCRASH.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 3863 records were written to the file 'R:\FILES\GES10\FlatFile\NMCRASH.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 3862 observations read from the data set GES2010.NMCRASH.
+NOTE: DATA statement used (Total process time):
+      real time           1.26 seconds
+      cpu time            0.01 seconds
+
+
+3862 records created in R:\FILES\GES10\FlatFile\NMCRASH.TXT from GES2010.NMCRASH
+        .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\NMCRASH.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           1.61 seconds
+      cpu time            0.07 seconds
+
+
+1446
+1447  PROC EXPORT DATA= GES2010.nmprior
+1448              OUTFILE= "R:\FILES\GES10\FlatFile\NMPRIOR.TXT"
+1449              DBMS=TAB REPLACE;
+1450  RUN;
+
+1451   /**********************************************************************
+1452   *   PRODUCT:   SAS
+1453   *   VERSION:   9.1
+1454   *   CREATOR:   External File Interface
+1455   *   DATE:      30NOV11
+1456   *   DESC:      Generated SAS Datastep Code
+1457   *   TEMPLATE SOURCE:  (None Specified.)
+1458   ***********************************************************************/
+1459      data _null_;
+1460      set  GES2010.NMPRIOR                              end=EFIEOD;
+1461      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1462      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1463      file 'R:\FILES\GES10\FlatFile\NMPRIOR.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1464         format MPR_ACT bestx12. ;
+1465         format REGION bestx12. ;
+1466         format STRATUM bestx12. ;
+1467         format CASENUM best12. ;
+1468         format WEIGHT best12. ;
+1469         format PERNO best12. ;
+1470         format PJ best12. ;
+1471         format PSU best12. ;
+1472      if _n_ = 1 then        /* write column names */
+1473       do;
+1474         put
+1475         'MPR_ACT'
+1476         '09'x
+1477         'REGION'
+1478         '09'x
+1479         'STRATUM'
+1480         '09'x
+1481         'CASENUM'
+1482         '09'x
+1483         'WEIGHT'
+1484         '09'x
+1485         'PERNO'
+1486         '09'x
+1487         'PJ'
+1488         '09'x
+1489         'PSU'
+1490         ;
+1491       end;
+1492       do;
+1493         EFIOUT + 1;
+1494         put MPR_ACT @;
+1495         put REGION @;
+1496         put STRATUM @;
+1497         put CASENUM @;
+1498         put WEIGHT @;
+1499         put PERNO @;
+1500         put PJ @;
+1501         put PSU ;
+1502         ;
+1503       end;
+1504      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1505      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1506      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\NMPRIOR.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\NMPRIOR.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 3461 records were written to the file 'R:\FILES\GES10\FlatFile\NMPRIOR.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 50.
+NOTE: There were 3460 observations read from the data set GES2010.NMPRIOR.
+NOTE: DATA statement used (Total process time):
+      real time           1.03 seconds
+      cpu time            0.00 seconds
+
+
+3460 records created in R:\FILES\GES10\FlatFile\NMPRIOR.TXT from GES2010.NMPRIOR
+        .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\NMPRIOR.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           1.37 seconds
+      cpu time            0.09 seconds
+
+
+1507
+1508  PROC EXPORT DATA= GES2010.maneuver
+1509              OUTFILE= "R:\FILES\GES10\FlatFile\MANEUVER.TXT"
+1510              DBMS=TAB REPLACE;
+1511  RUN;
+
+1512   /**********************************************************************
+1513   *   PRODUCT:   SAS
+1514   *   VERSION:   9.1
+1515   *   CREATOR:   External File Interface
+1516   *   DATE:      30NOV11
+1517   *   DESC:      Generated SAS Datastep Code
+1518   *   TEMPLATE SOURCE:  (None Specified.)
+1519   ***********************************************************************/
+1520      data _null_;
+1521      set  GES2010.MANEUVER                             end=EFIEOD;
+1522      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1523      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1524      file 'R:\FILES\GES10\FlatFile\MANEUVER.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1525         format MDRMANAV bestx12. ;
+1526         format REGION bestx12. ;
+1527         format STRATUM bestx12. ;
+1528         format CASENUM best12. ;
+1529         format WEIGHT best12. ;
+1530         format PJ best12. ;
+1531         format PSU best12. ;
+1532         format VEHNO best12. ;
+1533      if _n_ = 1 then        /* write column names */
+1534       do;
+1535         put
+1536         'MDRMANAV'
+1537         '09'x
+1538         'REGION'
+1539         '09'x
+1540         'STRATUM'
+1541         '09'x
+1542         'CASENUM'
+1543         '09'x
+1544         'WEIGHT'
+1545         '09'x
+1546         'PJ'
+1547         '09'x
+1548         'PSU'
+1549         '09'x
+1550         'VEHNO'
+1551         ;
+1552       end;
+1553       do;
+1554         EFIOUT + 1;
+1555         put MDRMANAV @;
+1556         put REGION @;
+1557         put STRATUM @;
+1558         put CASENUM @;
+1559         put WEIGHT @;
+1560         put PJ @;
+1561         put PSU @;
+1562         put VEHNO ;
+1563         ;
+1564       end;
+1565      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1566      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1567      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\MANEUVER.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\MANEUVER.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 81422 records were written to the file 'R:\FILES\GES10\FlatFile\MANEUVER.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 81421 observations read from the data set GES2010.MANEUVER.
+NOTE: DATA statement used (Total process time):
+      real time           29.46 seconds
+      cpu time            1.04 seconds
+
+
+81421 records created in R:\FILES\GES10\FlatFile\MANEUVER.TXT from GES2010.MANEUVER
+          .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\MANEUVER.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           29.80 seconds
+      cpu time            1.09 seconds
+
+
+1568
+1569  PROC EXPORT DATA= GES2010.violatn
+1570              OUTFILE= "R:\FILES\GES10\FlatFile\VIOLATN.TXT"
+1571              DBMS=TAB REPLACE;
+1572  RUN;
+
+1573   /**********************************************************************
+1574   *   PRODUCT:   SAS
+1575   *   VERSION:   9.1
+1576   *   CREATOR:   External File Interface
+1577   *   DATE:      30NOV11
+1578   *   DESC:      Generated SAS Datastep Code
+1579   *   TEMPLATE SOURCE:  (None Specified.)
+1580   ***********************************************************************/
+1581      data _null_;
+1582      set  GES2010.VIOLATN                              end=EFIEOD;
+1583      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1584      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1585      file 'R:\FILES\GES10\FlatFile\VIOLATN.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1586         format MVIOLATN bestx12. ;
+1587         format REGION bestx12. ;
+1588         format STRATUM bestx12. ;
+1589         format CASENUM best12. ;
+1590         format WEIGHT best12. ;
+1591         format PJ best12. ;
+1592         format PSU best12. ;
+1593         format VEHNO best12. ;
+1594      if _n_ = 1 then        /* write column names */
+1595       do;
+1596         put
+1597         'MVIOLATN'
+1598         '09'x
+1599         'REGION'
+1600         '09'x
+1601         'STRATUM'
+1602         '09'x
+1603         'CASENUM'
+1604         '09'x
+1605         'WEIGHT'
+1606         '09'x
+1607         'PJ'
+1608         '09'x
+1609         'PSU'
+1610         '09'x
+1611         'VEHNO'
+1612         ;
+1613       end;
+1614       do;
+1615         EFIOUT + 1;
+1616         put MVIOLATN @;
+1617         put REGION @;
+1618         put STRATUM @;
+1619         put CASENUM @;
+1620         put WEIGHT @;
+1621         put PJ @;
+1622         put PSU @;
+1623         put VEHNO ;
+1624         ;
+1625       end;
+1626      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1627      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1628      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\VIOLATN.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\VIOLATN.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 87371 records were written to the file 'R:\FILES\GES10\FlatFile\VIOLATN.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 87370 observations read from the data set GES2010.VIOLATN.
+NOTE: DATA statement used (Total process time):
+      real time           26.32 seconds
+      cpu time            0.68 seconds
+
+
+87370 records created in R:\FILES\GES10\FlatFile\VIOLATN.TXT from GES2010.VIOLATN
+         .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\VIOLATN.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           26.75 seconds
+      cpu time            0.79 seconds
+
+
+1629
+1630  PROC EXPORT DATA= GES2010.vision
+1631              OUTFILE= "R:\FILES\GES10\FlatFile\VISION.TXT"
+1632              DBMS=TAB REPLACE;
+1633  RUN;
+
+1634   /**********************************************************************
+1635   *   PRODUCT:   SAS
+1636   *   VERSION:   9.1
+1637   *   CREATOR:   External File Interface
+1638   *   DATE:      30NOV11
+1639   *   DESC:      Generated SAS Datastep Code
+1640   *   TEMPLATE SOURCE:  (None Specified.)
+1641   ***********************************************************************/
+1642      data _null_;
+1643      set  GES2010.VISION                               end=EFIEOD;
+1644      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1645      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1646      file 'R:\FILES\GES10\FlatFile\VISION.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1647         format MVISOBSC bestx12. ;
+1648         format REGION bestx12. ;
+1649         format STRATUM bestx12. ;
+1650         format CASENUM best12. ;
+1651         format WEIGHT best12. ;
+1652         format PJ best12. ;
+1653         format PSU best12. ;
+1654         format VEHNO best12. ;
+1655      if _n_ = 1 then        /* write column names */
+1656       do;
+1657         put
+1658         'MVISOBSC'
+1659         '09'x
+1660         'REGION'
+1661         '09'x
+1662         'STRATUM'
+1663         '09'x
+1664         'CASENUM'
+1665         '09'x
+1666         'WEIGHT'
+1667         '09'x
+1668         'PJ'
+1669         '09'x
+1670         'PSU'
+1671         '09'x
+1672         'VEHNO'
+1673         ;
+1674       end;
+1675       do;
+1676         EFIOUT + 1;
+1677         put MVISOBSC @;
+1678         put REGION @;
+1679         put STRATUM @;
+1680         put CASENUM @;
+1681         put WEIGHT @;
+1682         put PJ @;
+1683         put PSU @;
+1684         put VEHNO ;
+1685         ;
+1686       end;
+1687      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1688      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1689      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\VISION.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\VISION.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 81443 records were written to the file 'R:\FILES\GES10\FlatFile\VISION.TXT'.
+      The minimum record length was 27.
+      The maximum record length was 51.
+NOTE: There were 81442 observations read from the data set GES2010.VISION.
+NOTE: DATA statement used (Total process time):
+      real time           26.02 seconds
+      cpu time            0.85 seconds
+
+
+81442 records created in R:\FILES\GES10\FlatFile\VISION.TXT from GES2010.VISION
+        .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\VISION.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           26.36 seconds
+      cpu time            0.92 seconds
+
+
+1690
+1691  PROC EXPORT DATA=GES2010.pbtype
+1692              OUTFILE = "R:\FILES\GES10\FlatFile\PBTYPE.TXT"
+1693              DBMS=TAB REPLACE;
+1694  RUN;
+
+1695   /**********************************************************************
+1696   *   PRODUCT:   SAS
+1697   *   VERSION:   9.1
+1698   *   CREATOR:   External File Interface
+1699   *   DATE:      30NOV11
+1700   *   DESC:      Generated SAS Datastep Code
+1701   *   TEMPLATE SOURCE:  (None Specified.)
+1702   ***********************************************************************/
+1703      data _null_;
+1704      set  GES2010.PBTYPE                               end=EFIEOD;
+1705      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+1706      %let _EFIREC_ = 0;     /* clear export record count macro variable */
+1707      file 'R:\FILES\GES10\FlatFile\PBTYPE.TXT' delimiter='09'x DSD DROPOVER lrecl=32767;
+1708         format REGION bestx12. ;
+1709         format STRATUM bestx12. ;
+1710         format PBCWALK bestx12. ;
+1711         format PBSWALK bestx12. ;
+1712         format PBSZONE bestx12. ;
+1713         format PEDLOC bestx12. ;
+1714         format BIKELOC bestx12. ;
+1715         format PEDPOS bestx12. ;
+1716         format BIKEPOS bestx12. ;
+1717         format MOTDIR bestx12. ;
+1718         format PEDDIR bestx12. ;
+1719         format BIKEDIR bestx12. ;
+1720         format MOTMAN bestx12. ;
+1721         format PEDLEG bestx12. ;
+1722         format PEDSNR $88. ;
+1723         format PEDCTYPE bestx12. ;
+1724         format BIKECTYPE bestx12. ;
+1725         format PER_TYP bestx12. ;
+1726         format PEDCGP bestx12. ;
+1727         format BIKECGP bestx12. ;
+1728         format CASENUM best12. ;
+1729         format WEIGHT best12. ;
+1730         format PJ best12. ;
+1731         format PSU best12. ;
+1732         format PERNO best12. ;
+1733         format VEHNO best12. ;
+1734      if _n_ = 1 then        /* write column names */
+1735       do;
+1736         put
+1737         'REGION'
+1738         '09'x
+1739         'STRATUM'
+1740         '09'x
+1741         'PBCWALK'
+1742         '09'x
+1743         'PBSWALK'
+1744         '09'x
+1745         'PBSZONE'
+1746         '09'x
+1747         'PEDLOC'
+1748         '09'x
+1749         'BIKELOC'
+1750         '09'x
+1751         'PEDPOS'
+1752         '09'x
+1753         'BIKEPOS'
+1754         '09'x
+1755         'MOTDIR'
+1756         '09'x
+1757         'PEDDIR'
+1758         '09'x
+1759         'BIKEDIR'
+1760         '09'x
+1761         'MOTMAN'
+1762         '09'x
+1763         'PEDLEG'
+1764         '09'x
+1765         'PEDSNR'
+1766         '09'x
+1767         'PEDCTYPE'
+1768         '09'x
+1769         'BIKECTYPE'
+1770         '09'x
+1771         'PER_TYP'
+1772         '09'x
+1773         'PEDCGP'
+1774         '09'x
+1775         'BIKECGP'
+1776         '09'x
+1777         'CASENUM'
+1778         '09'x
+1779         'WEIGHT'
+1780         '09'x
+1781         'PJ'
+1782         '09'x
+1783         'PSU'
+1784         '09'x
+1785         'PERNO'
+1786         '09'x
+1787         'VEHNO'
+1788         ;
+1789       end;
+1790       do;
+1791         EFIOUT + 1;
+1792         put REGION @;
+1793         put STRATUM @;
+1794         put PBCWALK @;
+1795         put PBSWALK @;
+1796         put PBSZONE @;
+1797         put PEDLOC @;
+1798         put BIKELOC @;
+1799         put PEDPOS @;
+1800         put BIKEPOS @;
+1801         put MOTDIR @;
+1802         put PEDDIR @;
+1803         put BIKEDIR @;
+1804         put MOTMAN @;
+1805         put PEDLEG @;
+1806         put PEDSNR $ @;
+1807         put PEDCTYPE @;
+1808         put BIKECTYPE @;
+1809         put PER_TYP @;
+1810         put PEDCGP @;
+1811         put BIKECGP @;
+1812         put CASENUM @;
+1813         put WEIGHT @;
+1814         put PJ @;
+1815         put PSU @;
+1816         put PERNO @;
+1817         put VEHNO ;
+1818         ;
+1819       end;
+1820      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+1821      if EFIEOD then call symputx('_EFIREC_',EFIOUT);
+1822      run;
+
+NOTE: The file 'R:\FILES\GES10\FlatFile\PBTYPE.TXT' is:
+      File Name=R:\FILES\GES10\FlatFile\PBTYPE.TXT,
+      RECFM=V,LRECL=32767
+
+NOTE: 3260 records were written to the file 'R:\FILES\GES10\FlatFile\PBTYPE.TXT'.
+      The minimum record length was 67.
+      The maximum record length was 187.
+NOTE: There were 3259 observations read from the data set GES2010.PBTYPE.
+NOTE: DATA statement used (Total process time):
+      real time           1.73 seconds
+      cpu time            0.12 seconds
+
+
+3259 records created in R:\FILES\GES10\FlatFile\PBTYPE.TXT from GES2010.PBTYPE
+       .
+
+
+NOTE: "R:\FILES\GES10\FlatFile\PBTYPE.TXT" was successfully created.
+NOTE: PROCEDURE EXPORT used (Total process time):
+      real time           2.42 seconds
+      cpu time            0.25 seconds
+
+
+
