@@ -6,4 +6,12 @@ However, these data can be difficult to (1) find, (2) understand, (3) organize, 
 
 The purpose of this project is to centralize crash data from various sources, organize it in a easy to understand way, and provide tools that enable users to manipulate these data using R.
 
+## Data sources
+
+NHTSA FARS
+NHTSA GES
+NHTSA SDS
+
+## Contact
+
 jskaggs@uga.edu for comments and questions.
